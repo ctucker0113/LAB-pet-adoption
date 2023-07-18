@@ -240,3 +240,7 @@ const pets = [
       imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
     }
   ];
+
+for(const element of pets){
+  console.log(element.name)
+}
