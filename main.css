@@ -1,7 +1,8 @@
 body{
-    background-color:yellow
+    background-color:whitesmoke
 }
 
-.displayUnit{
-    background-color:blue;
+.card{
+    border: 2px solid black;
 }
+
