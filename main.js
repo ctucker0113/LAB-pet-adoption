@@ -241,6 +241,24 @@ const pets = [
     }
   ];
 
+
+let box = ""
+
 for(const element of pets){
-  console.log(element.name)
+  box += `
+  <div class="card" style="width: 18rem;">
+  <img src="${element.imageUrl}" alt="...">
+    <div class="card-body">
+      <h5 class="name-of-pet">${element.name}</h5>
+      <h5 class="ID">${element.id} </h5>
+      <p class="Color">${element.color}</p>
+      <h5 class="animalType">${element.type}</h5>
+    </div> 
+</div>
+`
 }
+document.body.innerHTML = box
+
+
+
+
