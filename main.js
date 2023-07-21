@@ -1,3 +1,10 @@
+//Creates elements for the button elements in Javascript so we can add event listeners later
+const button1Element = document.getElementById('btn1')
+const button2Element = document.getElementById('btn2')
+const button3Element = document.getElementById('btn3')
+const button4Element = document.getElementById('btn4')
+
+let box = ""
 const pets = [
     {
       id: 1,
@@ -241,23 +248,77 @@ const pets = [
     }
   ];
 
-
-let box = ""
-
-for(const element of pets){
-  box += `
-  <div class="card" style="width: 18rem;">
-  <img src="${element.imageUrl}" alt="...">
-    <div class="card-body">
-      <h5 class="name-of-pet">${element.name}</h5>
-      <h5 class="ID">${element.id} </h5>
-      <p class="Color">${element.color}</p>
-      <h5 class="animalType">${element.type}</h5>
-    </div> 
-</div>
-`
+//Allows the elements of the screen to be updated depending on which list is provided to the function.
+function setScreen(list){
+  box = ""
+  for(const element of list){
+    box += `
+    <div class="card" style="width: 18rem;">
+    <img src="${element.imageUrl}" alt="...">
+      <div class="card-body">
+        <h5 class="name-of-pet">${element.name}</h5>
+        <h5 class="ID">${element.id} </h5>
+        <p class="Color">${element.color}</p>
+        <h5 class="animalType">${element.type}</h5>
+        <p class="specialSkill">${element.specialSkill}</p>
+      </div> 
+    </div>
+    `
+  }
+  document.querySelector("#pet-cards").innerHTML = box
 }
-document.body.innerHTML = box
+
+//Initally sets the value of the screen to be the full array of pets.
+setScreen(pets)
+
+
+//Displays all animals in the pets list to the webpage
+
+
+
+//Code for what to do when each button at the top is clicked:
+button1Element.addEventListener("click", function(){
+  console.log("Button 1 clicked!")
+  listFilter("cat", pets)
+
+
+    }
+
+
+)
+
+button2Element.addEventListener("click", function(){
+  console.log("Button 2 clicked!")
+  listFilter("dog", pets)
+})
+
+button3Element.addEventListener("click", function(){
+  console.log("Button 3 clicked!")
+  listFilter("dino", pets)
+})
+
+button4Element.addEventListener("click", function(){
+  console.log("Button 4 clicked!")
+  setScreen(pets)
+})
+
+//Function that filters out everything in the pets list that isn't the animal designated in the parameter
+ function listFilter(animal, list){
+  filteredList = []
+  for(const element of list){
+    if(element.type == animal){
+      //console.log("Cat found!")
+      filteredList.push(element)
+     }
+   }
+  console.log(filteredList) 
+  setScreen(filteredList)
+ }
+
+
+
+
+
 
 
 
