@@ -1,8 +1,33 @@
 body{
-    background-color:whitesmoke
+    background-color:black
 }
 
 .card{
     border: 2px solid black;
 }
 
+#btn1{
+    background-color: royalblue
+}
+
+#btn2{
+    background-color: chartreuse
+}
+
+#btn3{
+    background-color: violet
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+#pet-cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
