@@ -3,6 +3,11 @@ const button1Element = document.getElementById('btn1')
 const button2Element = document.getElementById('btn2')
 const button3Element = document.getElementById('btn3')
 const button4Element = document.getElementById('btn4')
+const submitBtnElement = document.getElementById('submitBtn')
+const submitPetBtnElement = document.getElementById('submitPetBtn')
+
+
+
 
 let box = ""
 const pets = [
@@ -261,19 +266,25 @@ function setScreen(list){
         <p class="Color">${element.color}</p>
         <h5 class="animalType">${element.type}</h5>
         <p class="specialSkill">${element.specialSkill}</p>
+        <button class="deleteBtn" id="delete-btn-${element.id}">Delete</button>
       </div> 
     </div>
     `
   }
+
   document.querySelector("#pet-cards").innerHTML = box
+  for(let i = 0; i < list.length; i++){
+    document.getElementById(`delete-btn-${list[i].id}`).addEventListener('click', function(){
+      console.log(`Delete Button Number ${list[i].id} clicked!`)
+      deletePet(list[i].id)
+      setScreen(pets)
+    
+    })
+  }
 }
 
 //Initally sets the value of the screen to be the full array of pets.
 setScreen(pets)
-
-
-//Displays all animals in the pets list to the webpage
-
 
 
 //Code for what to do when each button at the top is clicked:
@@ -302,18 +313,84 @@ button4Element.addEventListener("click", function(){
   setScreen(pets)
 })
 
+submitBtnElement.addEventListener("click", function(){
+  console.log("Submit Button Clicked!")
+  addForm();
+  })
+
+
+
+
 //Function that filters out everything in the pets list that isn't the animal designated in the parameter
  function listFilter(animal, list){
   filteredList = []
   for(const element of list){
     if(element.type == animal){
-      //console.log("Cat found!")
       filteredList.push(element)
      }
    }
   console.log(filteredList) 
   setScreen(filteredList)
  }
+
+//Adds the form boxes at the top of the screen so that users can submit new pet entries.
+
+function addForm(){
+  document.querySelector("#formDisplay").innerHTML = `
+<div>
+  <label for="petName" class="form-label">Pet Name</label>
+  <textarea class="form-control" id="petName" rows="3"></textarea>
+</div>
+<div class="mb-3">
+  <label for="petType" class="form-label">Pet Type</label>
+  <textarea class="form-control" id="petType" rows="3"></textarea>
+</div>
+<div class="mb-3">
+  <label for="petColor" class="form-label">Pet Color</label>
+  <textarea class="form-control" id="petColor" rows="3"></textarea>
+</div>
+<div class="mb-3">
+  <label for="petImage" class="form-label">Pet Image</label>
+  <textarea class="form-control" id="petImage" rows="3"></textarea>
+</div>
+<div class="mb-3">
+  <label for="petSpecialSkill" class="form-label">Pet Special Skill</label>
+  <textarea class="form-control" id="petSpecialSkill" rows="3"></textarea>
+</div>
+  `
+  submitPetBtnElement.style.backgroundColor = "red"
+  submitPetBtnElement.addEventListener("click", function(){
+    createAnimal()
+    setScreen(pets)
+    document.querySelector("#formDisplay").innerHTML = "";
+    submitPetBtnElement.style.backgroundColor = "whitesmoke"
+  })
+
+}
+
+function createAnimal(){
+
+  const animalObj = {
+    id: pets.length + 1,
+    name: document.querySelector("#petName").value,
+    color: document.querySelector("#petColor").value,
+    specialSkill: document.querySelector("#petSpecialSkill").value,
+    type: document.querySelector("#petType").value,
+    imageURL: document.querySelector("#petImage").value
+  }
+  pets.push(animalObj)
+}
+
+function deletePet(id){
+  const index = pets.findIndex(pet => pet.id === id)
+  if(index !== -1){
+    pets.splice(index,1)
+  }
+ }
+
+
+
+
 
 
 
