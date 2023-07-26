@@ -1,5 +1,5 @@
 body{
-    background-color:black
+    background-color:whitesmoke
 }
 
 .card{
@@ -30,4 +30,14 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+#submitPetBtn{
+    background-color: whitesmoke;
+    color: whitesmoke;
+    border: 0px;
+}
+
+#deleteBtn{
+    background-color: red
 }
