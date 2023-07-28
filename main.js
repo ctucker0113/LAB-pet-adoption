@@ -9,6 +9,7 @@ const submitPetBtnElement = document.getElementById('submitPetBtn')
 
 
 
+
 let box = ""
 const pets = [
     {
@@ -371,7 +372,7 @@ function addForm(){
 function createAnimal(){
 
   const animalObj = {
-    id: pets.length + 1,
+    id: pets[pets.length-1].id+1,
     name: document.querySelector("#petName").value,
     color: document.querySelector("#petColor").value,
     specialSkill: document.querySelector("#petSpecialSkill").value,
